@@ -1,0 +1,25 @@
+<div class="example-container">
+  <div class="title-flower">
+    <label style="font-size:35px; text-align: center;">Upload file</label>
+  </div>
+  <div style="font-size:15px; text-align: center;">
+    <div class="grid-1-columns"> 
+      <label style="font-size:15px; text-align: center;">{{message}}</label>
+    </div>
+
+    <form [formGroup]='formFlower' (ngSubmit)="onSubmit()">
+      <div class="grid-1-columns">
+        <mat-form-field class="example-full-width">
+        <input matInput #email maxlength="100" placeholder="Email" formControlName='email' required>
+        <mat-hint align="start">{{email.value.length}}/<strong>100</strong> </mat-hint>
+        <mat-error *ngIf='controlFlower.controls.email.errors'>The Information is not valid!</mat-error>
+        </mat-form-field>
+      </div>
+      <button mat-button mat-raised-button color="primary" type="submit"
+      [disabled]="!uploader.getNotUploadedItems().length"> upload .CSV</button>
+      <input type="file" #file ng2FileSelect [uploader]="uploader"  (change)="readFile($event)">
+    </form>
+  </div>
+</div>
+ 
+
